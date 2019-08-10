@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/world.gd" type="Script" id=1]
+[ext_resource path="res://textures/background.png" type="Texture" id=2]
+[ext_resource path="res://scenes/rabbit_base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/fox_base.tscn" type="PackedScene" id=4]
+[ext_resource path="res://textures/light.png" type="Texture" id=5]
+[ext_resource path="res://textures/VeraIt.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/change_ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://music/music.wav" type="AudioStream" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 6 )
+
+[node name="world" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+
+[node name="borders" type="StaticBody2D" parent="."]
+
+[node name="shape" type="CollisionPolygon2D" parent="borders"]
+polygon = PoolVector2Array( 599.832, 168.982, 1124.68, 112.181, 1188.3, 196.247, 1415.51, 114.453, 1435.95, 275.77, 1576.82, 289.402, 1733.6, 364.381, 1622.26, 507.522, 1742.68, 557.507, 1529.11, 916.495, 1265.55, 1003.17, 1106.5, 837.308, 877.025, 878.205, 720.252, 975.904, 420.338, 1028.16, 429.426, 948.639, 674.81, 787.322, 640.729, 628.277, 390.801, 657.814, 254.476, 903.198, 127.24, 916.83, 104.519, 741.88, 213.579, 553.298, 111.336, 426.062, 188.586, 276.105, 365.808, 142.053, 597.326, 168.207, 577.111, 119.332, 109.064, 76.1628, 34.0851, 973.632, 370.352, 1046.34, 1774.49, 1044.07, 1842.66, 76.1628, 1279.18, 53.4421, 574.839, 76.1628 )
+
+[node name="rabbit_base" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1444.96, 747.587 )
+
+[node name="fox_base" parent="." instance=ExtResource( 4 )]
+position = Vector2( 405.322, 251.753 )
+
+[node name="light" type="Light2D" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 5 )
+color = Color( 0, 0, 0, 1 )
+energy = 0.2
+mode = 2
+
+[node name="clock" type="Label" parent="."]
+light_mask = 0
+margin_right = 372.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 1 )
+text = "10:00"
+
+[node name="day_label" type="Label" parent="."]
+light_mask = 0
+margin_top = 130.0
+margin_right = 411.0
+margin_bottom = 371.0
+custom_fonts/font = SubResource( 3 )
+text = "day 1"
+
+[node name="main_text" type="Label" parent="."]
+light_mask = 0
+margin_left = 123.0
+margin_top = 387.0
+margin_right = 1778.0
+margin_bottom = 552.0
+custom_fonts/font = SubResource( 2 )
+align = 1
+
+[node name="change_ui" parent="." instance=ExtResource( 7 )]
+light_mask = 0
+margin_left = 1429.96
+margin_top = 25.1754
+margin_right = 1429.96
+margin_bottom = 25.1754
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -14.136
+autoplay = true
